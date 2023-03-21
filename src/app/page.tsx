@@ -1,91 +1,67 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client"
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+import { userdata } from "../data";
+import { ReactElement, useState } from "react";
+import { obj } from "../data";
+import { FaFacebookF, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import Image from "next/image";
+
+
+// import './Profile.css'
+
+function ProfileCard({userdata}: {userdata: userdata}) {
+
+    const [connectState, setConnectState] = useState('Follow')
+    const {username, bling, location, Handles, coverimage, profileimage, techstack} = userdata
+    
+    function getIcon(key: string) {
+        let rs : ReactElement
+        if (key == 'instagram')
+            rs = <FaInstagram color="purple"/>
+        else if(key == 'facebook')
+            rs = <FaFacebookF color="blue"/>
+        else if(key == 'github')
+            rs = <FaGithub color="black"/>
+        else 
+            rs = <FaLinkedin color="blue" />
+        
+        return rs
+    }
+
+    return (
+        <div className="profile-card w-4/5 mx-auto min-h-[20rem] m-12 rounded-2xl border border-solid border-white overflow-hidden">
+            {/* <Image src={coverimage} className="object-cover w-full h-40 profile-card-cover"></img> */}
+            <Image className="object-cover w-full h-40 profile-card-cover" src={coverimage? coverimage : ''} alt=' ' width={100} height={100}/>
+            <div className="flex justify-center gap-4 evenly profile-card-content-section">
+                <Image className="profile-card-image w-40 h-40 rounded-[50%] -mt-20 ml-4 object-cover" src={profileimage? profileimage : ' '} alt="" width={100} height={100} ></Image>
+                <div className="flex flex-col justify-between gap-4 mt-4 profile-card-content">
+                    <h2 className="text-xl font-bold ">{username}</h2>
+                    <h4 className="font-normal text-[#7a7a82]">{bling}</h4>
+                    <h4 className="font-normal text-[#7a7a82]">📍 {location}</h4>
+                    <div className="grid grid-cols-5 gap-4 tech-stack">
+                        {techstack.map((item, index) => {
+                            return <div className="bg-[#f4f4f5] rounded-lg p-2 font-semibold text-center" key={index}>{item}</div>
+                        })}
+                    </div>
+                    <div className="flex items-center justify-center gap-8 social-links">
+                        {Object.keys(Handles? Handles : []).map(key => {
+                            return <a href={Handles? Handles[key] : ''} key={key}>{getIcon({key}.key)}</a>
+                        })}
+                    {/* <button className="save-user"></button> */}
+                    <button className="w-20 h-12 leading-3 px-2 py-4 font-normal bg-[#4f46e5] text-white cursor-pointer rounded-lg connect-action">{connectState}</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    )
+    
+}
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+export default function Profile() {
+    return (
+      <>
+        <ProfileCard userdata={obj} />
+      </>
+    )
 }
