@@ -33,7 +33,7 @@ export default function ProfileEditor({obj} : {obj : userdata}) {
             <label htmlFor="dispname">Display Name</label>
             <input type="text" name='username' onChange={onChange} placeholder={userEdit.username}/>
             <label htmlFor="about">About</label>
-            <textarea className='p-4 mb-7 mt-3' name='bling' onChange={onChange} placeholder={userEdit.bling}/>
+            <textarea className='p-4 mt-3 mb-7' name='bling' onChange={onChange} placeholder={userEdit.bling}/>
             <label htmlFor="profession">Profession</label>
             <input type="text" name='profession' onChange={onChange} placeholder={userEdit.profession}/>
             <label htmlFor="dob">Date of Birth</label>
@@ -46,33 +46,33 @@ export default function ProfileEditor({obj} : {obj : userdata}) {
                 <option value="Non Binary" />
             </datalist>
         </form>
-        <h3 className='font-bold text-2xl my-2'>Section visibility</h3>
+        <h3 className='my-2 text-2xl font-bold'>Section visibility</h3>
         <p className='text-gray-500'>Select which sections and content should show on your profile page.</p>
         <div className="visibility-options">
             <div className="followers-and-following">
                 <div>
-                    <h3 className='font-medium text-lg'>Follower and Following</h3>
+                    <h3 className='text-lg font-medium'>Follower and Following</h3>
                     <p className='text-sm text-gray-500'>Shows your followers and the users you follow on codedamn</p>
                 </div>
                 <input className="toggle-button" type="checkbox" name="" id="" />
             </div>
             <div className="xp">
                 <div>
-                    <h3 className='font-medium text-lg'>XP</h3>
+                    <h3 className='text-lg font-medium'>XP</h3>
                     <p className='text-sm text-gray-500'>Shows the XP you&apos;ve earned</p>
                 </div>
                 <input className="toggle-button" type="checkbox" name="" id="" />
             </div>
             <div className="achievement-badges">
                 <div>
-                    <h3 className='font-medium text-lg'>Achievement Badges</h3>
+                    <h3 className='text-lg font-medium'>Achievement Badges</h3>
                     <p className='text-sm text-gray-500'>Shows your relative percentile and proficiency </p>
                 </div>
                 <input className="toggle-button" type="checkbox" name="" id="" />
             </div>
         </div>
         <div className='self-end  [&_button]:px-3 [&_button]:py-2 [&_button]:rounded-lg [&_button]:font-medium'>
-            <button className='bg-gray-300 m-2 '>Cancel</button>
+            <button className='m-2 bg-gray-300 '>Cancel</button>
             <button className='bg-[#4f46e5] text-white'>Save Changes</button>
         </div>
         </>

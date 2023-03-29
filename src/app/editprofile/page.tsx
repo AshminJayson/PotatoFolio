@@ -22,7 +22,7 @@ function Sidebar({setEditor}: {setEditor : React.Dispatch<React.SetStateAction<s
     }
 
     return (
-        <div className="sidebar-options flex flex-col gap-6 text-xl font-medium shrink-0">
+        <div className="flex flex-col gap-6 text-xl font-medium sidebar-options shrink-0">
             <div className='active sidebar-div' id='Profile' onClick={() => currentEditor('Profile')}><FaCloudsmith />  Profile</div>
             <div className="sidebar-div"id='Socials' onClick={() => currentEditor('Socials')}><FaCloudsmith />  Socials</div>
             <div className='sidebar-div' id='Portfolio' onClick={() => currentEditor('Portfolio')}><FaCloudsmith />  Portfolio</div>
@@ -58,7 +58,7 @@ export default function EditProfile() {
 
 
     return (
-        <div className="profile-edit flex items-start w-screen p-16">
+        <div className="flex items-start w-screen p-16 profile-edit">
             <Sidebar setEditor = {setEditor} />
             <EditorSection currentEditor={currentEditor} />
         </div>
